@@ -5,10 +5,19 @@
 
 using namespace std;
 
+
 class Guard
 {
 public:
-    Guard ( string name, float defenceBonus ) : m_name ( name ), m_defenceBonus ( defenceBonus ) {}
+    Guard ( string name, float defenceBonus ) : m_name ( name ), m_defenceBonus ( defenceBonus )
+    {
+        m_eqSound = "sounds/default_sound.mp3";
+        m_unEqSound = "sounds/default_sound.mp3";
+    }
+
+    Guard ( string name, float defenceBonus, string eqSound, string unEqSound ) :
+        m_name ( name ), m_defenceBonus ( defenceBonus ), m_eqSound ( eqSound ), m_unEqSound ( unEqSound ) {}
+    
     virtual ~Guard () = default;
 
     virtual unique_ptr <Guard> clone () const = 0;
@@ -19,6 +28,9 @@ public:
     string getName () const { return m_name; }
     void setName ( string name ) { m_name = name; }
 
+    string getEqSound () const { return m_eqSound; }
+    string getUnEqSound () const { return m_unEqSound; }
+
     virtual ostream& print ( ostream& os ) const = 0;
 
     friend ostream& operator<< ( ostream& os, const Guard& t );
@@ -26,6 +38,8 @@ public:
 protected:
     string m_name;
     float m_defenceBonus;
+    string m_eqSound;
+    string m_unEqSound;
 };
 
 ostream& operator<< ( ostream& os, const Guard& g )
@@ -54,7 +68,13 @@ public:
     WoodenGuard ( string name, float defenceBonus, int durability = 100, int durabilityLoss = 10 ) :
         Guard ( name, defenceBonus ), m_durability ( durability ), m_durabilityLoss ( durabilityLoss ) {}
     
-    WoodenGuard ( const WoodenGuard& other ) : Guard ( other.m_name, other.m_defenceBonus )
+    WoodenGuard ( string name, float defenceBonus, string eqSound, string unEqSound,
+        int durability = 100, int durabilityLoss = 10 ) :
+        Guard ( name, defenceBonus, eqSound, unEqSound ),
+        m_durability ( durability ), m_durabilityLoss ( durabilityLoss ) {}
+    
+    WoodenGuard ( const WoodenGuard& other ) :
+        Guard ( other.m_name, other.m_defenceBonus, other.m_eqSound, other.m_unEqSound )
     {
         m_durability = other.m_durability;
         m_durabilityLoss = other.m_durabilityLoss;
@@ -90,11 +110,14 @@ private:
 class SteelGuard : public Guard
 {
 public:
-    SteelGuard ( string name, float defenceBonus ) : Guard ( name, defenceBonus )
-    {
-        m_durability = 200;
-        m_durabilityLoss = 5;
-    }
+    SteelGuard ( string name, float defenceBonus, int durability = 200, int durabilityLoss = 5 ) :
+        Guard ( name, defenceBonus ), m_durability ( durability ), m_durabilityLoss ( durabilityLoss ) {}
+    
+    SteelGuard ( string name, float defenceBonus, string eqSound, string unEqSound,
+        int durability = 200, int durabilityLoss = 5 ) :
+        Guard ( name, defenceBonus, eqSound, unEqSound ),
+        m_durability ( durability ), m_durabilityLoss ( durabilityLoss ) {}
+
     SteelGuard ( const SteelGuard& other ) : Guard ( other.m_name, other.m_defenceBonus )
     {
         m_durability = other.m_durability;
