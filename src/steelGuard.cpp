@@ -16,7 +16,7 @@ SteelGuard::SteelGuard ( const SteelGuard& other ) : Guard ( other.m_name, other
     m_durabilityLoss = other.m_durabilityLoss;
 }
 
-unique_ptr <Guard> SteelGuard::clone () const { return make_unique <SteelGuard> ( *this ); };
+unique_ptr <Guard> SteelGuard::clone () const { return make_unique <SteelGuard> ( *this ); }
 
 float SteelGuard::getDefenceBonus ()
 {

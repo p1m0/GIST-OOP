@@ -5,7 +5,7 @@ using namespace std;
 
 NoTool::NoTool ( string name, float attackBonus ) : Tool ( name, attackBonus ) {}
 
-unique_ptr <Tool> NoTool::clone () const { return make_unique <NoTool> (); };
+unique_ptr <Tool> NoTool::clone () const { return make_unique <NoTool> (); }
 
 float NoTool::getAttackBonus () const { return m_attackBonus; }
 

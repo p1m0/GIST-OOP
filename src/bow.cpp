@@ -13,7 +13,7 @@ Bow::Bow ( string name, float attackBonus, float criticalHitProb, string eqSound
 Bow::Bow ( const Bow& other ) : Tool ( other.m_name, other.m_attackBonus, other.m_eqSound, other.m_unEqSound ),
     m_criticalHitProb ( other.m_criticalHitProb ), m_randomDist ( 0.0f, 1.0f ) {}
 
-unique_ptr <Tool> Bow::clone () const { return make_unique <Bow> ( *this ); };
+unique_ptr <Tool> Bow::clone () const { return make_unique <Bow> ( *this ); }
 
 float Bow::getAttackBonus () const
 {

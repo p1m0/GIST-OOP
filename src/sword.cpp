@@ -10,7 +10,7 @@ Sword::Sword ( string name, float attackBonus, string eqSound, string unEqSound 
 
 Sword::Sword ( const Sword& other ) : Tool ( other.m_name, other.m_attackBonus, other.m_eqSound, other.m_unEqSound ) {}
 
-unique_ptr <Tool> Sword::clone () const { return make_unique <Sword> ( *this ); };
+unique_ptr <Tool> Sword::clone () const { return make_unique <Sword> ( *this ); }
 
 float Sword::getAttackBonus () const { return m_attackBonus; }
 

@@ -5,7 +5,7 @@ using namespace std;
 
 NoGuard::NoGuard ( string name, float defenceBonus ) : Guard ( name, defenceBonus ) {}
 
-unique_ptr <Guard> NoGuard::clone () const { return make_unique <NoGuard> (); };
+unique_ptr <Guard> NoGuard::clone () const { return make_unique <NoGuard> (); }
 
 float NoGuard::getDefenceBonus () { return m_defenceBonus; }
 

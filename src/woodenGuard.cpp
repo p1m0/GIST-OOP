@@ -18,7 +18,7 @@ WoodenGuard::WoodenGuard ( const WoodenGuard& other ) :
     m_durabilityLoss = other.m_durabilityLoss;
 }
 
-unique_ptr <Guard> WoodenGuard::clone () const { return make_unique <WoodenGuard> ( *this ); };
+unique_ptr <Guard> WoodenGuard::clone () const { return make_unique <WoodenGuard> ( *this ); }
 
 float WoodenGuard::getDefenceBonus ()
 {
