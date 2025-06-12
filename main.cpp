@@ -1,20 +1,25 @@
 #include <iostream>
-#include <vector>
-#include <string>
-#include <random>
 #include <memory>
 
-#include "tool.cpp"
-#include "guard.cpp"
-#include "player.cpp"
-#include "saveHistory.cpp"
+#include "tool.h"
+#include "bow.h"
+#include "sword.h"
+
+#include "guard.h"
+#include "woodenGuard.h"
+#include "steelGuard.h"
+
+#include "player.h"
+#include "saveHistory.h"
+#include "logger.h"
+#include "soundManager.h"
 
 using namespace std;
 
 
 int main()
 {
-    Player player ( "Archer" );
+    Player player ( "BigMan" );
     SaveHistory saveHistory;
 
     shared_ptr <Observer> logger = make_shared <Logger> ();
